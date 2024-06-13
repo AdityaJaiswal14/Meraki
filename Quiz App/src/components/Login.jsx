@@ -43,9 +43,10 @@ const Login = () => {
   }
 
   return (
-    <div className="min-h-screen py-40" style={{ backgroundImage: 'linear-gradient(115deg, #9F7AEA, #FEE2FE)' }}>
-      <div className="container mx-auto">
-        <div className="flex flex-col lg:flex-row w-10/12 lg:w-8/12 bg-white rounded-xl mx-auto shadow-lg overflow-hidden">
+    <div className="min-h-screen bg-cover bg-center" 
+     style={{ backgroundImage: "url(https://i.pinimg.com/originals/db/34/d4/db34d40b271fb59477621550bf73ea0b.jpg)" }} >
+      <div className="container mx-auto h-screen flex items-center">
+        <div className="flex flex-col lg:flex-row w-10/12 lg:w-8/12 bg-white rounded-xl mx-auto shadow-lg overflow-hidden p-10">
           <div
             className="w-full lg:w-1/2 flex flex-col items-center justify-center p-12 bg-no-repeat bg-cover bg-center"
             style={{ backgroundImage: "url(https://img.freepik.com/premium-vector/quiz-comic-pop-art-style_175838-505.jpg)" }}
@@ -60,7 +61,7 @@ const Login = () => {
                   placeholder="Enter Your Email" 
                   name="email"
                   onChange={handleForm}
-                  className=" border border-gray-400 py-1 px-3 w-full rounded-full" 
+                  className=" border border-gray-400 py-1 px-4 w-full rounded-full" 
                 />
                 {errors.email && <span>{errors.email}</span>}
               </div>
@@ -70,7 +71,7 @@ const Login = () => {
                   placeholder="Enter Your Password" 
                   name="password"
                   onChange={handleForm}
-                  className=" border border-gray-400 py-1 px-3 w-full rounded-full" 
+                  className=" border border-gray-400 py-1 px-4 w-full rounded-full" 
                 />
                 {errors.password && <span>{errors.password}</span>}
               </div>
@@ -78,7 +79,7 @@ const Login = () => {
                 <button 
                   type="submit"
                   onClick={handleSubmit} 
-                  className=" w-full bg-purple-500 py-3 text-center text-white rounded-full font-bold hover:bg-black hover:text-white">
+                  className=" w-full bg-amber-400 py-3 text-center text-white rounded-full font-semibold hover:bg-black hover:text-white duration-500">
                   Register Now
                 </button>
               </div>
