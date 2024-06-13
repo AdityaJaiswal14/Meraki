@@ -3,6 +3,7 @@ import Signup from './components/Signup'
 import Login from './components/Login'
 import LandingPage from './components/LandingPage'
 import Navbar from './components/Navbar'
+import Quiz from './components/Quiz
 import {
   BrowserRouter as Router,
   Routes,
@@ -22,6 +23,7 @@ function App() {
         </Route>
         <Route path='/register' element={<Signup/>}>
         </Route>
+        <Route path='/quiz' element={<Quiz/>>} 
       </Routes>
       </div>
     </Router>
