@@ -80,7 +80,7 @@ const Login = () => {
                   type="submit"
                   onClick={handleSubmit} 
                   className=" w-full bg-amber-400 py-3 text-center text-white rounded-full font-semibold hover:bg-black hover:text-white duration-500">
-                  Register Now
+                  Login
                 </button>
               </div>
             </form>
