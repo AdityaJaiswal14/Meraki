@@ -29,13 +29,13 @@ const LandingPage = () => {
           <div className="w-[20rem]">
           <button 
               type="submit" 
-              className=" w-full bg-black py-3 text-center text-white rounded-full font-bold mt-5 border-2 border-gray-500 hover:border-amber-200 hover:bg-amber-400 hover:text-black"
+              className=" w-full bg-black py-3 text-center text-white rounded-full font-bold mt-5 border-2 border-gray-500 hover:border-amber-200 hover:bg-amber-400 hover:text-black duration-500"
               onClick={Register}>
               REGISTER NOW
             </button>
             <button 
               type="submit" 
-              className=" btn w-full bg-black py-3 text-center text-white rounded-full font-bold mt-5 border-2 border-gray-500 hover:border-amber-200 hover:bg-amber-400 hover:text-black"
+              className=" btn w-full bg-black py-3 text-center text-white rounded-full font-bold mt-5 border-2 border-gray-500 hover:border-amber-200 hover:bg-amber-400 hover:text-black duration-500"
               onClick={Login}>
               LOGIN
             </button>
