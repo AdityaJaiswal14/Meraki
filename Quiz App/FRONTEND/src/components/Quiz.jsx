@@ -30,6 +30,7 @@ export default function Quiz() {
 
   return (
     <div className='container'>
+        <h1 className='text-light'></h1>
 
         <Questions></Questions>
       
