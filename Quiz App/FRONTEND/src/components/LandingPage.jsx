@@ -24,7 +24,7 @@ const LandingPage = () => {
             <h1 className="text-7xl mb-4 font-bold ">QUIZMASTER</h1>
           </div>
           <div className='w-2/3 text-center'>
-            <p className="text-2xl mb-4 font-semibold text-wrap whitespace-pre-wrap ">CHALLENGE YOURSELF WITH QUIZES ON ANY SUBJECT!</p>
+            <p className="text-2xl mb-4 font-semibold text-wrap whitespace-pre-wrap ">CHALLENGE YOURSELF WITH QUIZZES ON ANY SUBJECT!</p>
       </div>
           <div className="w-[20rem]">
           <button 
