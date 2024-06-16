@@ -16,7 +16,6 @@
 
 body, html{
   height: 100%;
-  background: var(--primary-color)
 }
 
 * > *{
@@ -84,17 +83,17 @@ body, html{
 
 .container .btn:hover{
     cursor: pointer;
-    background-color: #f0f0f0;
-    color: #202020;
+    background-color: #000000;
+    color: #ffffff;
 }
 
 .next{
-    background-color: #b62fd1;
+    background-color: #b1adad;
     justify-self: flex-end;
 }
 
 .prev{
-    background-color: #e4cce9;
+    background-color: #b1adad;
     justify-self: flex-start;
 }
 
@@ -127,13 +126,13 @@ ul li label{
 }
 
 ul li:hover label{
-	color: #FFFFFF;
+	color: #857c7c;
 }
 
 ul li .check{
   display: block;
   position: absolute;
-  border: 5px solid #534f4f;
+  border: 5px solid #756c6c;
   border-radius: 100%;
   height: 25px;
   width: 25px;
@@ -165,22 +164,22 @@ ul li .check::before {
 
 
 input[type=radio]:checked ~ .check {
-  border: 5px solid #b62fd1
+  border: 5px solid #000000
 }
 
 input[type=radio]:checked ~ .check::before{
-  background: #b62fd1
+  background: #000000
 }
 
 input[type=radio]:checked ~ .text-primary{
-  color: #b62fd1
+  color: #000000
 } 
 
 /* To get selected option we are using this checked class */
-.checked {
+/* .checked {
   border: 5px solid var(--primary-color) !important;
 }
 
 .checked::before{
   background: var(--primary-color)
-}
+} */
