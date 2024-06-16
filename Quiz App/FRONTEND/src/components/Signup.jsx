@@ -1,8 +1,12 @@
 import React from 'react'
 import { useState } from 'react';
+import axios from "axios"
+import { useNavigate } from 'react-router-dom'
 
 
 const Signup = () => {
+  
+  let navigate=useNavigate()
   const [formData, setFormData] = useState({
     firstname:'',
     lastname:'',
@@ -48,12 +52,33 @@ const Signup = () => {
 
     setErrors(validationErrors)
 
-    if(Object.keys(validationErrors).length === 0) {
-        alert("Sign Up Successfull")
-        
-        console.log(formData)
-    
-        
+    if(Object.keys(validationErrors).length === 0) {  
+      const options = {
+        method:"POST",
+        url:"http://localhost:5000/api/user/signup",
+        withCredentials: true,
+        credentials: 'include',
+        data:{
+          firstname: formData.firstname,
+          lastname: formData.lastname,
+          email: formData.email,
+          password: formData.password
+        },
+        // headers:{
+        //   'Content-Type':'application/json'
+        // }
+      }
+      const res = await axios.request(options)
+      const check = res.data.message
+      if (check == "OK")
+        {
+          alert("Succesfully Registered")
+          navigate('/')
+        }  
+      else
+      {
+        alert("Registration Failed")
+      }      
     }
   }
   return (

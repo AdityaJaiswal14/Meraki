@@ -1,8 +1,11 @@
 import React from 'react'
 import { useState } from 'react';
+import axios from "axios"
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
+  let navigate=useNavigate()
   const [formData, setFormData] = useState({
     email:'',
     password:''
@@ -34,11 +37,27 @@ const Login = () => {
     setErrors(validationErrors)
 
     if(Object.keys(validationErrors).length === 0) {
-        alert("Sign Up Successfull")
-        
-        console.log(formData)
-    
-        
+      const options = {
+        method:"POST",
+        url:"http://localhost:5000/api/user/login",
+        withCredentials: true,
+        credentials: 'include',
+        data:{
+          email: formData.email,
+          password: formData.password
+        },
+      }
+      const res = await axios.request(options)
+      const check = res.data.message
+      if (check == "OK")
+        {
+          alert("Succesfully Logged In")
+          navigate('/')
+        }  
+      else
+      {
+        alert("Login Failed")
+      }      
     }
   }
 
