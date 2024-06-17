@@ -10,7 +10,7 @@ export default function Quiz() {
     const dispatch = useDispatch()
     useEffect(() => {
       console.log(queue)
-    })
+    }, [queue])
 
     //Next button event handler
     function onNext(){
@@ -32,7 +32,7 @@ export default function Quiz() {
     <div className='container'>
         <h1 className='text-light'></h1>
 
-        <Questions></Questions>
+        <Questions />
       
      <div className='grid'>
         <button className='btn prev' onClick={onPrevious}>Previous</button>

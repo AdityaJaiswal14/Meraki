@@ -183,3 +183,15 @@ input[type=radio]:checked ~ .text-primary{
 .checked::before{
   background: var(--primary-color)
 } */
+
+.flex {
+  display: flex;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.items-center {
+  align-items: center;
+}
