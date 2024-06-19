@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const questionModel = new mongooseSchema({
+const questionModel = new mongoose.Schema({
     questions: {
         type: Array,
         default: []
@@ -13,6 +13,6 @@ const questionModel = new mongooseSchema({
         type: Date,
         default: Date.now
     }
-});
+})
 
 export default mongoose.model("Questions", questionModel);

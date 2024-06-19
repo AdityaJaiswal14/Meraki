@@ -1,4 +1,4 @@
-import Results from "../models/resultModel";
+import Results from "../models/resultModel.js";
 
 export async function getResult(req, res){
     try {

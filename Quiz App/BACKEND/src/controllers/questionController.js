@@ -1,5 +1,5 @@
-import Questions from "../models/questionModel";
-import questions, {answers} from '../db/data'
+import Questions from "../models/questionModel.js";
+import questions, {answers} from '../db/data.js'
 
 export async function getQuestions(req, res){
     try {
