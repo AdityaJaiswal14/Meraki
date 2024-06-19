@@ -1,9 +1,10 @@
-import './App.css'
+import '../src/styles/App.css'
+import Navbar from './components/Navbar'
 import Signup from './components/Signup'
 import Login from './components/Login'
 import LandingPage from './components/LandingPage'
-import Navbar from './components/Navbar'
 import Quiz from './components/Quiz'
+import Result from './components/Result'
 import {
   BrowserRouter as Router,
   Routes,
@@ -24,6 +25,8 @@ function App() {
         <Route path='/register' element={<Signup/>}>
         </Route>
         <Route path='/quiz' element={<Quiz/>}>
+        </Route>
+        <Route path='/result' element={<Result/>}>
         </Route>
       </Routes>
       </div>

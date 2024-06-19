@@ -4,27 +4,32 @@ import { useFetchQuestion } from '../hooks/FetchQuestion';
 import Timer from './Timer';
 import { useDispatch } from 'react-redux';
 import { MoveNextQuestion } from '../hooks/FetchQuestion';
+import { updateResult } from '../hooks/setResult';
 
-export default function Questions() {
+export default function Questions({onChecked}) {
   const [checked, setChecked] = useState(undefined);
+  const {trace} = useSelector(state => state.questions)
+  const result = useSelector(state => state.result.result)
   const [{ isLoading, apiData, serverError }] = useFetchQuestion();
   const questions = useSelector(state => state.questions.queue[state.questions.trace]);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(questions);
-  }, [questions]);
+    dispatch(updateResult({trace, checked}))
+  }, [checked]);
 
-  function onSelect() {
-    // console.log('radio button change')
+  function onSelect(i) {
+    onChecked(i)
+    setChecked(i)
+    dispatch(updateResult({trace, checked}))
   }
 
   function onUpdateTime(currentTime) {
-    console.log('Current Time: ', currentTime);
+    // console.log('Current Time: ', currentTime);
   }
 
   function onTimeUp() {
-    console.log('Time is up! Moving to next question.');
+    // console.log('Time is up! Moving to next question.');
     dispatch(MoveNextQuestion());
   }
 
@@ -45,10 +50,10 @@ export default function Questions() {
               value={checked}
               name="options"
               id={`q${i}-option`}
-              onChange={onSelect}
+              onChange={() => onSelect(i)}
             />
             <label className='text-primary' htmlFor={`q${i}-option`}>{q}</label>
-            <div className="check"></div>
+            <div className={`check ${result[trace] == i ? 'checked' : ''}`}></div>
           </li>
         ))}
       </ul>
