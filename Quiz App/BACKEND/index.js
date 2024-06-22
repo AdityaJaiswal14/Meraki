@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import bodyParser from "body-parser";
 import cors from "cors"
 import { connectToDatabase } from "./src/db/connection.js"
-import appRouter from "./src/routes/indexroutes.js";
+import appRouter from "./src/routes/indexRoutes.js";
 
 dotenv.config();
 const app=express()
@@ -12,10 +12,17 @@ const PORT=process.env.PORT || 5000
 app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(bodyParser.json()) 
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.json());
+
+app.get("/", (req, res) => {
+  try {
+    res.json("Get Request")
+  } catch (error) {
+      res.json(error)
+  }
+});
 
 app.use("/api", appRouter)
-
-
 
 connectToDatabase()
 .then(()=>{

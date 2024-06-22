@@ -1,23 +1,26 @@
-import React, { useEffect } from 'react'
 import '../styles/result.css'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { resetAllAction } from '../redux/question_reducer'
 import { resetResultAction } from '../redux/result_reducer'
 import { attemptsNumber, earnPointNumber, flagResult } from '../helper/helper'
+import { usePublishResult } from '../hooks/setResult'
 
 export default function Result() {
 
   const dispatch = useDispatch()
-  const {questions: {queue, answers}, result: {result, userId}} = useSelector(state => state)
-  useEffect(() => {
-    console.log(earnPoints)
-  })
+  const {questions: {queue, answers}, result: {result}} = useSelector(state => state)
 
   const totalPoints = queue.length * 10;
   const attempts = attemptsNumber(result);
   const earnPoints = earnPointNumber(result, answers, 10);
   const flag = flagResult(totalPoints, earnPoints)
+
+  usePublishResult({
+    result,
+    attempts,
+    points: earnPoints,
+    achieved: flag ? "Passed" : 'Failed'})
 
   function onRestart(){
     dispatch(resetAllAction())
