@@ -46,16 +46,33 @@ export async function getResult(req, res){
     }
 }
 
+//get result for user history
+export async function myresult (req, res){
+    try {
+      const {email} = req.user;
+      //let email="aditya.jaiswal10@gmail.com"
+      const check = await Results.find({ email: email });
+      if(check){
+        res.status(200).json({check});  
+      }
+          
+    } catch (error) {
+      res.status(500).json({ error: 'Login failed' });
+    }
+  }
+
 /** post all result */
 export async function storeResult(req, res){
    try {
+
+        const {email} = req.user
+        console.log(email)
         const { result, attempts, points, achieved } = req.body;
         console.log("Request body:", req.body);
         if(!result) {
             throw new Error('Data Not Provided...!');
         }
-
-        const newResult = await Results.create({ result, attempts, points, achieved });
+        const newResult = await Results.create({ email, result, attempts, points, achieved });
         res.json({ msg: "Result Saved Successfully...!", data: newResult });
     
       } catch (error) {

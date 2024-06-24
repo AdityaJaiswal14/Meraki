@@ -5,6 +5,8 @@ import Login from './components/Login'
 import LandingPage from './components/LandingPage'
 import Quiz from './components/Quiz'
 import Result from './components/Result'
+import Profile from './components/Profile'
+// import Testing from './components/Testing'
 import {
   BrowserRouter as Router,
   Routes,
@@ -26,8 +28,12 @@ function App() {
         </Route>
         <Route path='/quiz' element={<Quiz/>}>
         </Route>
+        <Route path='/profile' element={<Profile/>}>
+        </Route>
         <Route path='/result' element={<Result/>}>
         </Route>
+        {/* <Route path='/profile' element={<Testing/>}>
+        </Route> */}
       </Routes>
       </div>
     </Router>

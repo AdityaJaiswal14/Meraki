@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const resultModel = new mongoose.Schema({
+    email:{
+        type:String,
+        required: true,
+    },
     result: {
         type: Array,
         default: []

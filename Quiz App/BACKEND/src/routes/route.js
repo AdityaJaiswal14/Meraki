@@ -1,4 +1,5 @@
 import { Router } from "express";
+import jwtAuth from "../middleware/jwtAuth.js";
 const router = Router();
 
 /** import controllers */
@@ -12,8 +13,9 @@ router.route('/questions')
         .delete(controller.dropQuestions) /** DELETE Request */
 
 router.route('/result')
-        .get(controller.getResult)
-        .post(controller.storeResult)
+        // .get(controller.getResult)
+        .get(jwtAuth, controller.myresult)
+        .post(jwtAuth, controller.storeResult)
         .delete(controller.dropResult)
 
 export default router;

@@ -4,7 +4,7 @@ const Timer = ({ onUpdateTime, onTimeUp, resetKey }) => {
   const [timer, setTimer] = useState(5);
 
   useEffect(() => {
-    setTimer(10);
+    setTimer(30);
   }, [resetKey]);
 
   useEffect(() => {

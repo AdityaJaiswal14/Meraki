@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import bodyParser from "body-parser";
 import cors from "cors"
 import { connectToDatabase } from "./src/db/connection.js"
-import appRouter from "./src/routes/indexRoutes.js";
+import appRouter from "./src/routes/indexroutes.js";
 import cookieParser from "cookie-parser";
 
 dotenv.config();
