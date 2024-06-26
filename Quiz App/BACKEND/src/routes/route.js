@@ -7,10 +7,21 @@ import * as controller from '../controllers/controller.js';
 
 /** Questions Routes API */
 
-router.route('/questions')
-        .get(controller.getQuestions) /** GET Request */
-        .post(controller.insertQuestions) /** POST Request */
-        .delete(controller.dropQuestions) /** DELETE Request */
+// router.route('/questions')
+//         .get(controller.getQuestions) /** GET Request */
+//         .post(controller.insertQuestions) /** POST Request */
+//         .delete(controller.dropQuestions) /** DELETE Request */
+
+router.route('/quizzes')
+    .get(controller.getQuizzes);
+
+router.route('/questions/:quizId')
+    .post(controller.insertQuestions); /** POST Request */
+
+router.route('/questions/:quizId')
+    .get(controller.getQuestions) /** GET Request */
+    .delete(controller.dropQuestions) /** DELETE Request */
+
 
 router.route('/result')
         // .get(controller.getResult)

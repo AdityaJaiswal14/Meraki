@@ -5,6 +5,7 @@ import cors from "cors"
 import { connectToDatabase } from "./src/db/connection.js"
 import appRouter from "./src/routes/indexroutes.js";
 import cookieParser from "cookie-parser";
+import quizzes from './src/db/data.js';
 
 dotenv.config();
 const app=express()
@@ -21,6 +22,16 @@ app.get("/", (req, res) => {
     res.json("Get Request")
   } catch (error) {
       res.json(error)
+  }
+});
+
+app.get('/api/quiz/:id', (req, res) => {
+  const quizId = parseInt(req.params.id);
+  const quiz = quizzes.find(q => q.id === quizId);
+  if (quiz) {
+    res.json(quiz);
+  } else {
+    res.status(404).send('Quiz not found');
   }
 });
 

@@ -1,18 +1,18 @@
 import mongoose from "mongoose";
 
-const questionModel = new mongoose.Schema({
-    questions: {
-        type: Array,
-        default: []
+const questionSchema = new mongoose.Schema({
+    quizId: {
+      type: Number,
+      ref: 'Quiz',
+      required: true
     },
-    answers:{
-        type: Array,
-        default: []
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    }
-})
+    questions: [
+      {
+        question: { type: String, required: true },
+        options: [String]
+      }
+    ],
+    answers: [Number]
+  });
 
-export default mongoose.model("Questions", questionModel);
+export default mongoose.model('Question', questionSchema);
