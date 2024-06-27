@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 // function getToken() {
 //     console.log(document.cookie.split(';'))
 //     const cookie = document.cookie.split('; ').find(row => row.startsWith('token='));
@@ -9,45 +10,22 @@ import axios from 'axios';
 //   }
 
 export function attemptsNumber(result){
-    if (!result) return 0;
     return result.filter(r => r !== undefined).length
 }
 
 export function earnPointNumber(result, answers, points){
-    if (!result || !answers) return 0;
-    return result
-        .map((element, i) => answers[i] === element)
-        .filter(i => i)
-        .map(() => points)
-        .reduce((prev, curr) => prev + curr, 0);
+    return result.map((element, i) => answers[i] === element).filter(i => i).map(i => points).reduce((prev, curr) => prev + curr, 0); 
 }
 
 export function flagResult(totalPoints, earnPoints){
     return (totalPoints * 40 / 100) < earnPoints;
 }
 
-export async function getServerData(url, callback) {
-    try {
-      const response = await axios.get(url);
-      const data = response.data;
-      return callback ? callback(data) : data;
-    } catch (error) {
-      console.error(`Error fetching data from ${url}:`, error);
-      throw error; // Rethrow error to propagate to the caller
-    }
-  }
-
-/** post server data */
-export async function postServerData(url, result, callback){
-    const data = await (await axios.post(url, result))?.data;
+export async function getServerData(url, callback){
+    const data = await (await axios.get(url))?.data;
+    console.log(data);
     return callback ? callback(data) : data;
 }
-
-// export async function getServerData(url, callback){
-//     const data = await (await axios.get(url))?.data;
-//     console.log(data);
-//     return callback ? callback(data) : data;
-// }
 
 // // Fetch data from the server
 // export async function getServerData(url, callback) {
@@ -71,13 +49,13 @@ export async function postServerData(url, result, callback){
 //     }
 //   }
 
-// export async function postServerData(url, result, callback){
-//     const data = await (await axios.post(url, result,{
-//         withCredentials: true
-//     }))?.data;
-//     console.log(data);
-//     return callback ? callback(data) : data;
-// }
+export async function postServerData(url, result, callback){
+    const data = await (await axios.post(url, result,{
+        withCredentials: true
+    }))?.data;
+    console.log(data);
+    return callback ? callback(data) : data;
+}
 
 // //Post data to the server
 // export async function postServerData(url, result, callback) {
