@@ -4,13 +4,12 @@ const Timer = ({ onUpdateTime, onTimeUp, resetKey }) => {
   const [timer, setTimer] = useState(5);
 
   useEffect(() => {
-    setTimer(30);
+    setTimer(10);
   }, [resetKey]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer((currentTime) => {
-        onUpdateTime(currentTime);
         if (currentTime === 0) {
           clearInterval(interval);
           onTimeUp();

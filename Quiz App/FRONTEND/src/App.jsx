@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import Signup from './components/Signup'
 import Login from './components/Login'
 import LandingPage from './components/LandingPage'
+import QuizzesArea from './components/QuizzesArea'
 import Quiz from './components/Quiz'
 import Result from './components/Result'
 import Profile from './components/Profile'
@@ -26,11 +27,13 @@ function App() {
         </Route>
         <Route path='/register' element={<Signup/>}>
         </Route>
-        <Route path='/quiz' element={<Quiz/>}>
+        <Route path='/quiz/:quizId' element={<Quiz/>}>
         </Route>
         <Route path='/profile' element={<Profile/>}>
         </Route>
         <Route path='/result' element={<Result/>}>
+        </Route>
+        <Route path='/quizzes' element={<QuizzesArea/>}>
         </Route>
         {/* <Route path='/profile' element={<Testing/>}>
         </Route> */}

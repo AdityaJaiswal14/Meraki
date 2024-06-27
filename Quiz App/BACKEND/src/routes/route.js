@@ -1,16 +1,19 @@
 import { Router } from "express";
 import jwtAuth from "../middleware/jwtAuth.js";
-const router = Router();
-
-/** import controllers */
 import * as controller from '../controllers/controller.js';
 
-/** Questions Routes API */
+const router = Router();
+
+router.route('/quizzes')
+    .get(controller.getQuizzes);
 
 router.route('/questions')
-        .get(controller.getQuestions) /** GET Request */
-        .post(controller.insertQuestions) /** POST Request */
-        .delete(controller.dropQuestions) /** DELETE Request */
+    .post(controller.insertQuestions); /** POST Request */
+
+router.route('/questions/:id')
+    .get(controller.getQuestions) /** GET Request */
+    .delete(controller.dropQuestions) /** DELETE Request */
+
 
 router.route('/result')
         // .get(controller.getResult)

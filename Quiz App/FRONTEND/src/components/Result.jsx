@@ -51,7 +51,7 @@ export default function Result() {
         </div>
       </div>
       <div className='start'>
-        <Link className='btn' to={'/quiz'} onClick={onRestart}>Restart</Link>        
+        <Link className='restart' to={'/quizzes'} onClick={onRestart}>Back</Link>        
       </div>
     </div>
   )

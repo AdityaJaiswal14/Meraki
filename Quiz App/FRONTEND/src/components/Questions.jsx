@@ -6,11 +6,11 @@ import { useDispatch } from 'react-redux';
 import { MoveNextQuestion } from '../hooks/FetchQuestion';
 import { updateResult } from '../hooks/setResult';
 
-export default function Questions({onChecked}) {
+export default function Questions({quizId, onChecked}) {
   const [checked, setChecked] = useState(undefined);
   const {trace} = useSelector(state => state.questions)
   const result = useSelector(state => state.result.result)
-  const [{ isLoading, apiData, serverError }] = useFetchQuestion();
+  const [{ isLoading, apiData, serverError }] = useFetchQuestion(quizId);
   const questions = useSelector(state => state.questions.queue[state.questions.trace]);
   const dispatch = useDispatch();
 
@@ -24,23 +24,18 @@ export default function Questions({onChecked}) {
     dispatch(updateResult({trace, checked}))
   }
 
-  function onUpdateTime(currentTime) {
-    // console.log('Current Time: ', currentTime);
-  }
-
   function onTimeUp() {
-    // console.log('Time is up! Moving to next question.');
     dispatch(MoveNextQuestion());
   }
 
   if (isLoading) return <h3 className='text-light'>Loading...</h3>;
-  if (serverError) return <h3 className='text-light'>{serverError || "Unknown Error"}</h3>;
+  if (serverError) return <h3 className='text-light'>{serverError.message}</h3>;
 
   return (
     <div className='questions'>
       <div className='flex justify-between items-center'>
         <h2 className='text-light'>{questions?.question}</h2>
-        <Timer onUpdateTime={onUpdateTime} onTimeUp={onTimeUp} resetKey={questions?.id} />
+        <Timer onTimeUp={onTimeUp} resetKey={questions?.id} />
       </div>
       <ul key={questions?.id}>
         {questions?.options.map((q, i) => (
