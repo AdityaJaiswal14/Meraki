@@ -149,58 +149,57 @@ export async function dropQuestions(req, res){
 
 /** get all result */
 export async function getResult(req, res){
-    try {
-        const r = await Results.find();
-        res.json(r)
-    } catch (error) {
-        console.error("Error fetching results:", error);
-        res.json({ error })
-    }
+  try {
+      const r = await Results.find();
+      res.json(r)
+  } catch (error) {
+      console.error("Error fetching results:", error);
+      res.json({ error })
+  }
 }
 
 //get result for user history
 export async function myresult (req, res){
-    try {
-      const {email} = req.user;
-      //let email="aditya.jaiswal10@gmail.com"
-      const check = await Results.find({ email: email });
-      if(check){
-        res.status(200).json({check});  
-      }
-          
-    } catch (error) {
-      res.status(500).json({ error: 'Login failed' });
+  try {
+    const {email} = req.user;
+    //let email="aditya.jaiswal10@gmail.com"
+    const check = await Results.find({ email: email });
+    if(check){
+      res.status(200).json({check});  
     }
+        
+  } catch (error) {
+    res.status(500).json({ error: 'Login failed' });
   }
+}
 
 /** post all result */
 export async function storeResult(req, res){
-   try {
+ try {
 
-        const {email} = req.user
-        console.log(email)
-        const { result, attempts, points, achieved } = req.body;
-        console.log("Request body:", req.body);
-        if(!result) {
-            throw new Error('Data Not Provided...!');
-        }
-        Results.create({ email, result, attempts, points, achieved }, function(err, data) {
-          res.json({ msg: "Result Saved Successfully"})
-        })
-    
-      } catch (error) {
-        console.error("Error storing result:", error);
-        res.json({error})
+      const {email} = req.user
+      console.log(email)
+      const { result, attempts, points, achieved } = req.body;
+      console.log("Request body:", req.body);
+      if(!result) {
+          throw new Error('Data Not Provided...!');
       }
+      const newResult = await Results.create({ email, result, attempts, points, achieved });
+      res.json({ msg: "Result Saved Successfully...!", data: newResult });
+  
+    } catch (error) {
+      console.error("Error storing result:", error);
+      res.status(500).json({ error: error.message });
     }
+  }
 
 /** delete all result */
 export async function dropResult(req, res){
-    try {
-        await Results.deleteMany();
-        res.json({ msg : "Result Deleted Successfully...!"})
-    } catch (error) {
-        console.error("Error deleting results:", error);
-        res.json({ error })
-    }
+  try {
+      await Results.deleteMany();
+      res.json({ msg : "Result Deleted Successfully...!"})
+  } catch (error) {
+      console.error("Error deleting results:", error);
+      res.json({ error })
+  }
 }
