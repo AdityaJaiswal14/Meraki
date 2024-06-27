@@ -16,12 +16,6 @@ export default function Quiz() {
     /** fetch questions */
     useFetchQuestion(quizId);
 
-    useEffect(() => {
-        console.log('Queue:', queue);
-        console.log('Result:', result);
-        console.log('Trace:', trace);
-    }, [queue, result, trace]);
-
     function onNext() {
         if (trace < (queue?.length || 0)) {
             dispatch(MoveNextQuestion());

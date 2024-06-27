@@ -195,3 +195,17 @@ To get selected option we are using this checked class */
 .items-center {
   align-items: center;
 }
+
+.restart{
+  padding: .2em 1.7em;
+  border: none;
+  border-radius: .1em;
+  font-size: 1.2em;
+  background-color: #b1adad;
+  margin: 2px 50%;
+}
+
+.restart:hover{
+  background-color: #000000;
+  color: #ffffff;
+}

@@ -2,41 +2,6 @@ import Questions from "../models/questionModel.js";
 import Results from "../models/resultModel.js";
 import quizzes from '../db/data.js'
 
-/** get all questions */
-// export async function getQuestions(req, res){
-//     try {
-//         const q = await Questions.find();
-//         res.json(q)
-//     } catch (error) {
-//         console.error("Error fetching questions:", error);
-//         res.json({ error })
-//     }
-// }
-
-
-/** insert all questinos */
-// export async function insertQuestions(req, res) {
-//     try {
-//             await Questions.insertMany({questions, answers}); 
-//             res.json({ msg: "Data Saved Successfully...!" });
-//     } catch (error) {
-//             console.error("Error inserting questions:", error); // Log the error
-//             res.json({ error: error.message }); // Include detailed error message
-//     }
-//   }
-
-
-/** Delete all Questions */
-// export async function dropQuestions(req, res){
-//    try {
-//         await Questions.deleteMany();
-//         res.json({ msg: "Questions Deleted Successfully...!"});
-//    } catch (error) {
-//         console.error("Error deleting questions:", error);
-//         res.json({ error })
-//    }
-// }
-
 export async function getQuizzes(req, res) {
   try {
       res.json(quizzes);
@@ -45,48 +10,6 @@ export async function getQuizzes(req, res) {
       res.status(500).json({ error: "Error fetching quizzes" });
   }
 }
-
-/** get all questions for a specific quiz */
-// export async function getQuestions(req, res){
-//   try {
-//       const { quizId } = req.params;
-//       const questions = await Questions.find({ quizId });
-//       res.json(questions);
-//   } catch (error) {
-//       console.error("Error fetching questions:", error);
-//       res.status(500).json({ error: "Error fetching questions" });
-//   }
-// }
-
-/** insert questions for a specific quiz */
-// export async function insertQuestions(req, res){
-//   try {
-//       const { quizId, questions, answers } = req.body;
-//       const newQuestions = new Questions({ quizId, questions, answers });
-//       await newQuestions.save();
-//       res.json({ msg: "Data Saved Successfully...!" });
-//   } catch (error) {
-//       res.json({ error });
-//   }
-// }
-
-// export async function insertQuestions(req, res) {
-//   try {
-//     const { quizId, questions, answers } = req.body;
-
-//     if (!quizId) {
-//       return res.status(400).json({ error: 'Quiz ID is required' });
-//     }
-
-//     const newQuestions = new Questions({ quizId, questions, answers });
-//     await newQuestions.save();
-
-//     res.status(200).json({ msg: 'Data Saved Successfully!' });
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// }
-
 
 /** get questions for a specific quiz */
 export async function getQuestions (req, res) {

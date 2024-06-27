@@ -24,12 +24,7 @@ export default function Questions({quizId, onChecked}) {
     dispatch(updateResult({trace, checked}))
   }
 
-  function onUpdateTime(currentTime) {
-    // console.log('Current Time: ', currentTime);
-  }
-
   function onTimeUp() {
-    // console.log('Time is up! Moving to next question.');
     dispatch(MoveNextQuestion());
   }
 
@@ -40,7 +35,7 @@ export default function Questions({quizId, onChecked}) {
     <div className='questions'>
       <div className='flex justify-between items-center'>
         <h2 className='text-light'>{questions?.question}</h2>
-        <Timer onUpdateTime={onUpdateTime} onTimeUp={onTimeUp} resetKey={questions?.id} />
+        <Timer onTimeUp={onTimeUp} resetKey={questions?.id} />
       </div>
       <ul key={questions?.id}>
         {questions?.options.map((q, i) => (
