@@ -15,10 +15,10 @@ import * as controller from '../controllers/controller.js';
 router.route('/quizzes')
     .get(controller.getQuizzes);
 
-router.route('/questions/:quizId')
+router.route('/questions')
     .post(controller.insertQuestions); /** POST Request */
 
-router.route('/questions/:quizId')
+router.route('/questions/:id')
     .get(controller.getQuestions) /** GET Request */
     .delete(controller.dropQuestions) /** DELETE Request */
 

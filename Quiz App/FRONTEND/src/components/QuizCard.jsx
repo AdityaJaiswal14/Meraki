@@ -7,14 +7,6 @@ function QuizCard({ quiz }) {
     return (
         <div className="rounded-[10px] flex flex-col gap-2 border border-gray-300 bg-white p-4">
             <div className="relative bg-green-700 w-full h-32 w-32 flex justify-center items-center rounded-md">
-                <div className="absolute cursor-pointer top-3 right-3">
-                    <FontAwesomeIcon
-                        className="text-white"
-                        height={13}
-                        width={13}
-                        icon={faEllipsis}
-                    />
-                </div>
                 <FontAwesomeIcon
                     className="text-white"
                     height={80}
@@ -27,14 +19,14 @@ function QuizCard({ quiz }) {
             <div className="flex gap-3">
             </div>
             <div className="rounded-full w-7 h-7 bg-green-700 flex items-center justify-center">
-                <Link to={`/quiz/${quiz.id}`}>
-                    <FontAwesomeIcon
-                        className="text-white"
-                        width={15}
-                        height={15}
-                        icon={faPlay}
-                    />
-                </Link>
+            <Link to={`/quiz/${quiz.quizId}`}>
+                <FontAwesomeIcon
+                    className="text-white"
+                    width={15}
+                    height={15}
+                    icon={faPlay}
+                />
+            </Link>
             </div>
         </div>
     );

@@ -27,8 +27,8 @@ function QuizzesArea() {
     if (error) return <p>{error}</p>;
 
     return (
-        <div className="poppins mx-12 mt-10">
-            <h2 className="text-xl font-bold">My Quizzes</h2>
+        <div className="poppins mx-12 mt-20">
+            {/* <h2 className="text-xl font-bold">My Quizzes</h2> */}
             <div className="mt-6 flex gap-2 flex-wrap">
                 {quizzes.map((quiz) => (
                     <QuizCard key={quiz.id} quiz={quiz} />

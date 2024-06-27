@@ -26,11 +26,16 @@ export function flagResult(totalPoints, earnPoints){
     return (totalPoints * 40 / 100) < earnPoints;
 }
 
-export async function getServerData(url, callback){
-    const data = await (await axios.get(url))?.data;
-    return callback ? callback(data) : data;
-}
-
+export async function getServerData(url, callback) {
+    try {
+      const response = await axios.get(url);
+      const data = response.data;
+      return callback ? callback(data) : data;
+    } catch (error) {
+      console.error(`Error fetching data from ${url}:`, error);
+      throw error; // Rethrow error to propagate to the caller
+    }
+  }
 
 /** post server data */
 export async function postServerData(url, result, callback){

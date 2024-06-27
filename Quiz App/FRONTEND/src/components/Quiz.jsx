@@ -48,7 +48,6 @@ export default function Quiz() {
 
     return (
         <div className='container'>
-            <h1 className='title text-light'></h1>
             {queue?.length > 0 ? <Questions quizId={quizId} onChecked={onChecked} /> : <p>Loading...</p>}
             <div className='grid'>
                 {trace > 0 ? <button className='btn prev' onClick={onPrev}>Prev</button> : <div></div>}

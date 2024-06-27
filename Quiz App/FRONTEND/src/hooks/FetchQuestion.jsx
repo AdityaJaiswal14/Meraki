@@ -45,7 +45,7 @@ export const useFetchQuestion = (quizId) => {
 
         (async () => {
             try {
-                const data = await getServerData(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/questions/${quizId}`);
+                const data = await getServerData(`${import.meta.env.VITE_REACT_APP_HOSTNAME}/api/questions/${quizId}`, (data) => data);
                 if (data.questions.length > 0) {
                     setGetData(prev => ({ ...prev, isLoading: false, apiData: data.questions }));
                     dispatch(Action.startExamAction({ question: data.questions, answers: data.answers }));

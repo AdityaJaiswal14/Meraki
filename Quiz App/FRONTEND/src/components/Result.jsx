@@ -39,7 +39,7 @@ export default function Result() {
           }
         });
 
-        console.log(response.data);
+        console.log('Result published:', response.data);
       } catch (error) {
         console.error('Error publishing result:', error);
       }

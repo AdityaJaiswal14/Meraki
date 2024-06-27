@@ -89,45 +89,52 @@ export async function getQuizzes(req, res) {
 
 
 /** get questions for a specific quiz */
-export async function getQuestions(req, res) {
+export async function getQuestions (req, res) {
+  const quizId = Number(req.params.id);
+  if (isNaN(quizId)) {
+    return res.status(400).json({ error: 'Invalid quizId' });
+  }
   try {
-    const questions = await Questions.find(); // Adjust this to fit your schema and query logic
-    res.status(200).json(questions);
+    const quizData = await Questions.findOne({ quizId: quizId });
+    if (quizData) {
+      res.status(200).json(quizData);
+    } else {
+      res.status(404).json({ error: 'Quiz not found' });
+    }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-}
+};
 
 /** insert questions for a specific quiz */
-export async function insertQuestions(req, res) {
+export async function insertQuestions (req, res) {
   try {
-      const quizId = req.params.quizId;
-      if (!quizId) {
-          return res.status(400).json({ error: 'Quiz ID is required' });
-      }
+    const { quizId, title, questions, answers } = req.body;
 
-      // Log the request body for debugging
-      console.log('Request Body:', req.body);
+    if (!Array.isArray(questions) || !Array.isArray(answers)) {
+      return res.status(400).json({ error: "Questions and answers are required and should be arrays" });
+    }
 
-      const { questions, answers } = req.body;
+    if (typeof quizId !== 'number' || typeof title !== 'string') {
+      return res.status(400).json({ error: "Quiz ID should be a number and title should be a string" });
+    }
 
-      if (!questions || !Array.isArray(questions) || questions.length === 0) {
-          return res.status(400).json({ error: 'Questions are required and should be an array' });
-      }
+    const newQuiz = new Questions({
+      quizId,
+      title,
+      questions,
+      answers
+    });
 
-      const questionsWithQuizId = questions.map(question => ({
-          ...question,
-          quizId
-      }));
+    await newQuiz.save();
 
-      await Questions.insertMany(questionsWithQuizId);
-
-      res.status(201).json({ msg: 'Data Saved Successfully...!' });
+    res.status(201).json({ msg: "Data Saved Successfully...!" });
   } catch (error) {
-      console.error('Error inserting questions:', error);
-      res.status(500).json({ error: error.message || 'An error occurred while inserting questions' });
+    console.error(error.message);
+    res.status(500).json({ error: error.message });
   }
-}
+};
+
 
 /** delete all questions for a specific quiz */
 export async function dropQuestions(req, res){
